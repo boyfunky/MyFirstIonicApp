@@ -1,0 +1,129 @@
+<ion-view view-title="Mortgage" ng-init= homeloandata()>
+  <ion-content class="padding">
+  In Mortgage
+    <ion-list>
+      <ion-item ng-repeat="data in loans">
+        {{data.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
+
+
+
+<!-- <label><a ng-href="#/">Dashboard</a></label>
+<div id="container" ng-controller='Mortgage_LoanCtrl' ng-init= homeloandata('nil')>
+	<div class="col-md-12" style="padding-left: 0px; padding-right: 0px">
+		<form name= "filter" ng-init= paramsData()>	
+			<div class=" land_type col-md-1" style="width: 12%; padding-left: 0px; padding-right: 2px">
+				<h6>Land Type</h6>
+	 			<select class="" name="loan_type"	id="loan_type" ng-model="loanfilter.loan_type" style="-webkit-appearance: none">
+        	<option value="" default selected class="placeholder">Please Select</option> 
+        	<option>Residential</option>
+          <option>Commercial</option>
+        </select> 
+			</div>
+			<div class=" property_value col-md-1" style="width: 13%; padding-left: 0px; padding-right: 2px">
+				<h6>Property Value(RM)</h6>
+				<input id="property_value" name="property_value" type="text" placeholder="500000" value="" ng-model="loanfilter.property_value" class="form-control property-value-input" style="height: 20px" required/>
+			</div>
+			<div class=" tenure col-md-1" style="width: 10%; padding-left: 0px; padding-right: 2px">
+				<h6>Tenure(Years)</h6>
+				<input id="tenure" name="tenure" type="text" placeholder="20" ng-model="loanfilter.tenure" class="form-control property-tenure-input" style="height: 20px" />
+			</div>
+			<div class=" margin_finance col-md-1" style="width: 13%; padding-left: 0px; padding-right: 2px">
+				<h6>Margin of Finance(%)</h6>
+				<input id="margin_finance" name="margin_finance" type="text" placeholder="90" ng-model="loanfilter.margin_finance" class="form-control property-margin-input" style="height: 23px"/>
+			</div>
+			<div class=" interest_rate col-md-1" style="width: 11%; padding-left: 0px; padding-right: 2px">
+				<h6>Interest Rate Type</h6>
+	 			<select class="" name="rate_type"	id="rate_type" ng-model="loanfilter.rate_type" style="width: 100%">
+        	<option value="" default selected class="placeholder">Please Select</option>
+        	<option value="Floating and fixed interest">All</option>
+        	<option value="Floating interest rate">Floating</option>
+          <option value="Fixed interest rate">Fixed</option>
+        </select> 
+			</div>
+			<div class=" full_flexi col-md-1" style="width: 10%; padding-left: 0px; padding-right: 2px">
+				<h6>Full Flexi or NON</h6>
+	 			<select class="" name="full_non_flexi" id="full_non_flexi" ng-model="loanfilter.full_flexi" style="width: 100%">
+        	<option value="" default selected class="placeholder">Please Select</option>
+        	<option value="Full flexi and non-full flexi loan">All</option>
+        	<option value="Full flexi loan">Yes</option>
+          <option value="Non-full flexi loan">No</option>
+        </select>
+			</div>
+			<div class=" conventional_islamic col-md-1" style="width: 20%; padding-left: 0px; padding-right: 2px">
+				<h6>Conventional or Islamic Financing</h6>
+	 			<select class="" name="conventional_islamic"	id="conventional_islamic" ng-model="loanfilter.conventional_islamic" style="width: 100%">
+        	<option value="" default selected class="placeholder">Please Select</option>
+        	<option value="Islamic and conventional">All</option>
+        	<option value="Islamic">Islamic</option>
+          <option value="Conventional">Others</option>
+        </select>
+			</div>
+			<div class=" lock_period col-md-1" style="width: 9%; padding-left: 0px; padding-right: 2px">
+				<h6>Lock In Period</h6>
+	 			<select class="" name="lock_period"	id="lock_period" ng-model="loanfilter.lock_period" style="width: 100%">
+        	<option value="" default selected class="placeholder">Please Select</option>
+        	<option value="Show all">All</option>
+        	<option value="Lock in period only">Yes</option>
+          <option value="No lock in period only">No</option>
+        </select>
+			</div>
+			 <div class="row col-xs-12">
+          <button data-step1-trigger type="button" class="btn btn-default update-result-btn" role="next" ng-click="update_result()"><i class="fa fa-search"></i> Update Results</button>
+        </div>
+		</form>
+	</div>
+  <div class="product-noselected-message"></div>
+  <div class="ls-wiz-panel apply-btn-bar-top ls-active" data-wiz-current-state="1" data-wiz-final-state="3">
+    <button class="btn btn-default apply-home-loan-btn" ng-click="submit_application('lg')">Apply</button>
+  </div>
+    
+	<form>
+		<div class="row" >
+    	<table id="ls-shop-rel-list" class="row ls-shop-list packages" data-per-page="40">
+       	<thead class="">
+        	<tr class="row hidden-xs">
+          	<th>Apply?</th>
+            <th><span class="down" data-column="bank.name">Bank</span></th>
+            <th><span class="down" data-column="package_name">Package</span></th>
+            <th><span class="down" data-column="info_name">Info</span></th>
+            <th><span class="down" data-column="monthly_payment">Monthly<br>RM</span></th>
+            <th><span class="active up" data-column="interest_rate">Interest<br>Rate</span></th>
+            <th><span class="down" data-column="maximum_tenure">Max<br>Tenure</span></th>
+            <th><span class="down" data-column="maximum_finance">Max<br>Margin</span></th>
+            <th><span class="down" data-column="lock_in">Lock in<br>Period</span></th>
+            <th><span class="down" data-column="is_flexi">Full Flexi<br>Loan?</span></th>
+          </tr>
+        </thead>
+        <tbody>
+        	<tr class="row hidden-xs" ng-repeat="data in loans">
+          	<td><input type="checkbox" class="hidden-xs" id="{{data.id}}"/>
+            	<img class="ls-decoration hidden-lg hidden-md hidden-sm" src="http://cdn.loanstreet.com.my/assets/button-selected-large-a3480a3ee5f72bf6937d0b95ab38b347.png">
+            </td>
+            <td>
+            	<img style="max-width: 90px; max-height: 35px" alt="{{data.bank_name}}" src="http://static.loanstreet.com.my/assets/common/banks/{{data.bank_image}}">
+            </td>
+            <td>{{data.name}}</td>
+            <td><img class="tip" src="http://static.loanstreet.com.my/assets/common/glasses.png" popover="{{data.notes}}" popover-trigger="mouseenter"></td>
+            <td>{{data.monthly}}</td>
+            <td>{{data.effective_rate}}%</td>
+            <td>{{data.maximum_tenure}}yrs</td>
+            <td>{{data.maximum_finance}}%</td>
+            <td>{{data.lock_in_period}}</td>
+            <td>{{data.is_flexi}}</td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+    <div class="row">	
+    	<div class="row apply-btn-bar-bottom">
+      	<button class="btn btn-default" ng-click="homeloandata('all')">{{shownAll}}</button>
+      </div>
+  	</div>
+  </form> 
+</div> -->
+
+
